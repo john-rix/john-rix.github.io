@@ -1,5 +1,7 @@
 body {
     background-color: white;
     color: #02394A;
-    text-align: center;
+}
+.center {
+    text-alignment: centered;
 }
