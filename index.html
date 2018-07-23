@@ -1,1 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>John's Website</title>
+    <link rel="icon" href="https://favicon.png" sizes="any" type="image/svg+xml">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            color: white;
+            font-family: courier;
+            margin: 0;
+        }
+        button {
+            background-color: black;
+            color: white;
+            width: 150px;
+            height: 20px;
+            border: none;
+        }
+        @media screen and (max-width:600px) {
+            .column {
+                width: 100%;
+            }
+        }
+        .header {
+            padding: 20px;
+            text-align: left;
+        }
+        .map {
+            padding:20px;
+            float:left;
+        }
+        .music {
+            padding: 20px;
+        }
+        .navbar {
+            overflow: hidden;
+            border-color: white;
+            border-width: 20px;
+            padding: 20px;
+        }
+        .navbar p:hover {
+            background-color: red;
+            color: yellow;
+        } 
+        .column {
+            float: left;
+            padding: 20px;
+            width: 33%;
+        }
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .card {
+            background-color: grey;
+            padding: 20px;
+        }
+        .footer {
+            padding: 20px;
+        }
+    </style>
+</head>
+	
+<body background="https://i.imgur.com/3akVAln.jpg">
+    
+    <div class="header">
+        <h1>My shitty website</h1>
+        <h3 id="title">Real human bean</h3>
+	</div>
 
+    <div class="navbar">
+        <p>Location 1</p>
+        <p>Location 2</p>
+        <p>Location 3</p>
+	</div>
+	
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <p>Words go here lots of good words to fill up the space</p> 
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <p>Words go here lots of good words to fill up the space</p>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <p>Words go here lots of good words to fill up the space</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">  
+        <button type="button" onclick="document.getElementById('title').innerHTML = 'Alien Lifeform'">Change title</button>
+        <button type="button" id="demo" onclick="document.getElementById('demo').innerHTML = Date()"> Show date and time.</button>
+    </div>
+
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!4v1532300988317!6m8!1m7!1soQmwALe_Z2Eq1Km88GSXfg!2m2!1d35.7907935400242!2d-78.64442789278974!3f281.40333325857387!4f-1.635543944964823!5f0.7820865974627469" width="800" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+
+    <div class="music">
+    <iframe src="https://open.spotify.com/embed/album/5a7lf8VgEjX1xg483fF4jn" width="300" height="250" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+
+</body>
+</html>
