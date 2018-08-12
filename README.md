@@ -1,2 +1,2 @@
-# john-rix.github.io
-Personal Site
+# John Rix
+Personal Website
