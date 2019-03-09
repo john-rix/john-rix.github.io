@@ -1,10 +1,11 @@
 body {  
+  font-family: roboto;
   display: flex;
   flex-direction: column;
   justify-content: left;
   align-items: left;
-  margin-top: 200px;
-  margin-left: 200px;
+  margin-top: 50px;
+  margin-left: 50px;
   background-image: url("background.jpg");
   background-size:cover;
 }
