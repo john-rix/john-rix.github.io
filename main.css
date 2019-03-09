@@ -2,6 +2,7 @@ body {
   font-family: 'Roboto', sans-serif;
   background-image: url("background.jpg");
   background-size:cover;
+}
 .material-icons { 
   font-size: 64px; 
 }
