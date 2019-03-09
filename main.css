@@ -1,5 +1,6 @@
 body {
   font-family: 'Roboto', sans-serif;
+  background-image: url("background.jpg");
 }
 .material-icons { 
   font-size: 64px; 
