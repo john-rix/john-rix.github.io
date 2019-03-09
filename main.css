@@ -1,11 +1,11 @@
 body {  
-  font-family: roboto;
+  font-family: arial;
   display: flex;
   flex-direction: column;
   justify-content: left;
   align-items: left;
-  margin-top: 50px;
-  margin-left: 50px;
+  margin-top: 20px;
+  margin-left: 30px;
   background-image: url("background.jpg");
   background-size:cover;
 }
