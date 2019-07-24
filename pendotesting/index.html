@@ -1,5 +1,31 @@
 <h1>This is a page for testing Pendo</h1>
-<p>text and stuff here</p>
+<p>This is just some paragraph text for a dummy page.</p>
+<button>ONE</button>
+<button>TWO</button>
+<button>THREE</button>
+<br><br>
+<a href="https://pendo.io">Pendo Homepage</a>
+<br><br>
+<form>
+  First name:<br>
+  <input type="text" name="firstname"><br>
+  Last name:<br>
+  <input type="text" name="lastname">
+</form>
+<p>Choose your ice cream flavor below.</p>
+<form>
+  <input type="radio" name="flavor" value="chocolate" checked> Chocolate<br>
+  <input type="radio" name="flavor" value="vanilla"> Vanilla<br>
+  <input type="radio" name="flavor" value="strawberry"> Strawberry
+</form>
+<h2>Header text 2</h2>
+<form action="/action_page.php">
+  First name:<br>
+  <input type="text" name="firstname" value="Mickey"><br>
+  Last name:<br>
+  <input type="text" name="lastname" value="Mouse"><br><br>
+  <input type="submit" value="Submit">
+</form>
 <script>
 (function(apiKey){
     (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
@@ -13,7 +39,7 @@
         pendo.initialize({
             visitor: {
                 id: 'Test User 1',   // Required if user is logged in
-                email: 'jpr+1@pendo.io',       
+                email: 'jpr+1@pendo.io',
                 role: 'Tester',
                 priority: false
 
