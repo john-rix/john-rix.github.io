@@ -27,6 +27,8 @@
   <input type="submit" value="Submit">
 </form>
 <script>
+var random_number = Math.floor(Math.random()*50000+10000);
+
 (function(apiKey){
     (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
     v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
@@ -38,11 +40,10 @@
         // Please use Strings, Numbers, or Bools for value types.
         pendo.initialize({
             visitor: {
-                id: 'Test User 1',   // Required if user is logged in
-                email: 'jpr+1@pendo.io',
+                id: random_number,   // Required if user is logged in
+                email: 'testing@pendo.io',
                 role: 'Tester',
-                priority: false,
-                testing: 'blah blah blah'
+                priority: false
 
                 // You can add any additional visitor level key-values here,
                 // as long as it's not one of the above reserved names.
