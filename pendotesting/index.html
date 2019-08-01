@@ -26,7 +26,16 @@
   <input type="text" name="lastname" value="Doe"><br><br>
   <input type="submit" value="Submit">
 </form>
+<button onclick="track_event()">TRACK EVENT</button>
+
 <script>
+function track_event() {
+pendo.track("Track Event Test", {
+  property_test_1: "this is only a test",
+  property_test_2: "testing testing"
+});
+}
+
 var random_number = Math.floor(Math.random()*50000+10000);
 
 (function(apiKey){
@@ -50,7 +59,7 @@ var random_number = Math.floor(Math.random()*50000+10000);
             },
 
             account: {
-                id: 'Acme Co', // Highly recommended
+                id: 12345, // Highly recommended
                 name: 'Acme',        // Optional
                 planLevel: 'Custom',   // Optional
                 PlanPrice: 1000,   // Optional
