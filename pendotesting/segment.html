@@ -18,6 +18,13 @@
   analytics.identify('{{ user.id_hard_coded }}', {
   name: '{{ user.fullname_hard_coded }}',
   email: '{{ user.email_hard_coded }}'
+  });
+  analytics.group("445566", {
+  name: "Initech", 
+  industry: "Technology",
+  employees: 329, 
+  plan: "enterprise", 
+  "total billed": 830
 });
   }}();
 </script>
