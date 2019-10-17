@@ -16,15 +16,19 @@
   analytics.load("UOJLsWdmHjCevYaVLFxnlMaiPW1SOJio");
   analytics.page();
   analytics.identify('segment-test-id', {
-  name: 'segment-test-name',
-  email: 'segment-test@test.com'
-  });
+    name: 'segment-test-name',
+    email: 'segment-test@test.com'
+    });
   analytics.group("445566", {
-  name: "Initech", 
-  industry: "Technology",
-  employees: 329, 
-  plan: "enterprise", 
-  "total billed": 830
-});
+    name: "Initech", 
+    industry: "Technology",
+    employees: 329, 
+    plan: "enterprise", 
+    "total billed": 830
+  });
+  analytics.track("Registered", {
+    plan: "Pro Annual", 
+    accountType: "Facebook"
+    });
   }}();
 </script>
