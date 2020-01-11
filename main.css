@@ -8,6 +8,7 @@ ul {
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #deeaee;
 }
 .button {
   background-color: DarkSlateGray;
@@ -18,4 +19,7 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 13px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
 }
