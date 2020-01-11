@@ -12,7 +12,8 @@ ul {
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: White;
-  margin: 30px;
+  margin: 40px;
+  text-align: center;
 }
 .button {
   background-color: Gray;
