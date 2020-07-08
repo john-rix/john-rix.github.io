@@ -1,4 +1,4 @@
 ## John Rix
-Personal Website
+Personal website
 
 https://johnrix.dev
