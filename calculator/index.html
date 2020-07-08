@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="calculator.css">
+</head>
+<body>
+    <div id="container">
+        <div id="calculator">
+            <div class="display"></div>
+            <button class="digit">7</button>
+            <button class="digit">8</button>
+            <button class="digit">9</button>
+            <button class="operator" operatorKey="add">+</button>
+            <button class="digit">4</button>
+            <button class="digit">5</button>
+            <button class="digit">6</button>
+            <button class="operator" operatorKey="subtract">-</button>
+            <button class="digit">1</button>
+            <button class="digit">2</button>
+            <button class="digit">3</button>
+            <button class="operator" operatorKey="multiply">x</button>
+            <button class="digit">0</button>
+            <button class="clear">c</button>
+            <button class="equals">=</button>
+            <button class="operator" operatorKey="divide">÷</button>
+        </div>
+    </div>
+    
+    <script>
+
+    function add (a, b) { 
+        return a + b
+    }
+    function subtract (a, b) {
+        return a - b
+    }
+    function multiply (a, b) { 
+        return a * b
+    }
+    function divide (a, b) {
+        return a / b
+    }
+    function operate (operator, a, b) {
+        if (operator == 'add') {
+            return add (a, b)
+            } else if (operator == 'subtract') {
+            return subtract (a, b)
+            } else if (operator == 'multiply') {
+            return multiply (a, b)
+            } else if (operator == 'divide') {
+            return divide (a, b)
+            }
+    }
+
+    let a = null
+    let b = null
+    let display = ''
+    let solution = null
+    let operatorChosen = ''
+
+    function digitButton() {
+        display += event.target.textContent
+        b = parseInt(display)
+        document.querySelector("div.display").innerHTML = b
+    }
+
+    function operatorButton() {
+        operatorChosen = event.target.attributes.operatorKey.value
+        if (a && b) {
+            solution = operate(operatorChosen, a, b)
+            display = ''
+            a = solution
+            b = null
+        } else if (a) {
+            solution = a
+            display = ''
+        } else if (b) {
+            solution = b
+            display = ''
+            a = solution
+            b = null
+        }
+    }
+
+    function clearButton() {
+        document.querySelector("div.display").innerHTML = ''
+        display = ''
+        a = null
+        b = null
+    }
+
+    function equalsButton() {
+        if (operatorChosen == 'divide' && b == 0) {
+            a = null
+            b = null
+            display = ''
+            document.querySelector("div.display").innerHTML = "error"
+        } else if (a && b) {
+            solution = Math.round(((operate(operatorChosen, a, b)) + Number.EPSILON) * 1000) / 1000
+            document.querySelector("div.display").innerHTML = solution
+            display = ''
+            a = solution
+            b = null
+        } else if (a) {
+            solution = a
+            document.querySelector("div.display").innerHTML = solution
+        } else if (b) {
+            solution = b
+            document.querySelector("div.display").innerHTML = solution
+        } else {
+            return
+        } 
+    }
+
+    function addListeners() {
+        document.querySelectorAll("button.digit").forEach(function(elem) {
+            elem.addEventListener("click", digitButton)
+        })
+        document.querySelectorAll("button.operator").forEach(function(elem) {
+            elem.addEventListener("click", operatorButton)
+        })
+        document.querySelector("button.clear").addEventListener("click", clearButton)
+        document.querySelector("button.equals").addEventListener("click", equalsButton)
+    }
+    addListeners()
+
+    </script>
+</body>
+</html>
