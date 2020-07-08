@@ -6,11 +6,10 @@
     <link rel="stylesheet" type="text/css" href="calculator.css">
 </head>
 <body>
-
     <div id="container">
         <ul>
-  <li><a href="https://johnrix.dev">Homepage</a></li>
-</ul>
+            <li><a href="https://johnrix.dev">Homepage</a></li>
+        </ul>
         <div id="calculator">
             <div class="display"></div>
             <button class="digit">7</button>
@@ -87,14 +86,14 @@
             b = null
         }
     }
-
+        
     function clearButton() {
         document.querySelector("div.display").innerHTML = ''
         display = ''
         a = null
         b = null
     }
-
+        
     function equalsButton() {
         if (operatorChosen == 'divide' && b == 0) {
             a = null
@@ -129,7 +128,7 @@
         document.querySelector("button.equals").addEventListener("click", equalsButton)
     }
     addListeners()
-
+        
     </script>
 </body>
 </html>
