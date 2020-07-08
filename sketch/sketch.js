@@ -1,5 +1,5 @@
 //define initial grid size
-var size = 24;
+var size = 100;
 
 //build the grid layout
 const container = document.querySelector('#container');
