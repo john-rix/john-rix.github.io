@@ -1,5 +1,5 @@
 //define initial grid size
-var size = 100;
+var size = 40;
 
 //build the grid layout
 const container = document.querySelector('#container');
@@ -18,7 +18,7 @@ function draw() {
 const pixels = document.querySelectorAll('.pixel');
         pixels.forEach((pixel) => {
             pixel.addEventListener('mouseover', (e) => {
-                e.target.style.background = 'black';
+                e.target.style.background = document.querySelector('#colorPicker').value;
             });
         });
 };
