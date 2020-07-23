@@ -2,9 +2,32 @@ body{
     font-family: sans-serif;
 }
 
-#topDiv {
+#title {
     text-align:center;
     margin: 10px;
+}
+
+#main {
+    float: left;
+}
+
+#controls {
+    float: left;
+    margin-left: 30px;
+    margin-top: 70px;
+    margin-right: 50px;
+    padding: 20px;
+    border: 1px solid rgb(53, 53, 53);
+}
+
+#reset {
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+#colorPicker {
+    width: 70px;
+    height: 30px;
 }
 
 #container {
