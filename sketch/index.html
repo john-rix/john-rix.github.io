@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sketch</title>
-  <meta charset="UTF-8"/>
-  <link rel="stylesheet" href="sketch.css">
-  <script src="sketch.js" defer></script>
+	<title>Sketch</title>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" href="sketch.css">
+	<script src="sketch.js" defer></script>
 </head>
 
 <body>
-    <div id="topDiv">
-      <h2>Use your mouse to sketch something!</h2>
-      <button id="reset">New Grid</button>
-    </div>
-    <div id="container">
-    </div>
+	<div id="controls">
+		<button id="reset">Reset Grid</button>
+		<p>Color Picker</p>
+		<input type="color" name="color" id="colorPicker" value="#2d8f55">
+	</div>
+	<div id="main">
+		<div id="title">
+			<h2>Use your mouse to draw</h2>
+		</div>
+		<div id="container"></div>
+	</div>
 </body>
 </html>
