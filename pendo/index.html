@@ -1,157 +1,119 @@
-<head>
-  <link rel="stylesheet" href="/main.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-</head>
-<ul>
-  <li><a href="https://johnrix.dev">Homepage</a></li>
-</ul>
-<h1>Pendo Testing</h1>
-<ul>
-  <li><a href="https://johnrix.dev/pendo/segment">Segment Install Test Page</a></li>
-  <li><a href="https://johnrix.dev/pendo/test">Simple Test Page</a></li>
-  <li><a href="https://johnrix.dev/pendo/app2">Secondary App Test Page</a></li>
-</ul>
-<p>This is just some paragraph text for a dummy page.</p>
-<p>This is more text with some inline styling <span style="color:blue">right here.</span></p>
-<button class="button">ONE</button>
-<button class="button">TWO</button>
-<button class="button">THREE</button>
-<br><br>
-<div class="pendo_group_1"></div>
-<form>
-  First name:<br>
-  <input type="text" name="firstname"><br>
-  Last name:<br>
-  <input type="text" name="lastname">
-</form>
-<p>Choose your ice cream flavor below.</p>
-<form>
-  <input type="radio" name="flavor" value="chocolate" checked> Chocolate<br>
-  <input type="radio" name="flavor" value="vanilla"> Vanilla<br>
-  <input type="radio" name="flavor" value="strawberry"> Strawberry
-</form>
-<h2>Header text 2</h2>
-<button class="button" onclick="track_event()">TRACK EVENT TEST</button>
-<br>
-<table style="width:100%" border= "1px solid black">
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th> 
-    <th>Age</th>
-  </tr>
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
-  </tr>
-  <tr>
-    <td>John</td>
-    <td>Doe</td>
-    <td>80</td>
-  </tr>
-</table>
-<br>
-<div id="check" class="choice">
-  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br>
-</div>
-<div id="check" class="choice">
-  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br>
-</div>
-<div id="check" class="choice">
-  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br>
-</div>
-<div id="check" class="choice">
-  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br>
-</div>
-<div id="check" class="choice">
-  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br>
-</div>
-<div id="check" class="choice">
-  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br>
-</div>
-<div id="check" class="choice">
-  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br>
-</div>
-<div id="check" class="choice">
-  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br>
-</div>
-<div id="check" class="choice">
-  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br>
-</div>
-<div id="check" class="choice">
-  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br>
-</div>
-<div id="check" class="choice">
-  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br>
-</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>John Rix - Pendo</title>
+        <link rel="stylesheet" href="../main.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Alata" rel="stylesheet">
+    </head>
 
-<script>
-function track_event() {
-pendo.track("Track Event Test", {
-  property_test_1: "this is only a test",
-  property_test_2: "testing testing"
-});
-}
-var random_number = Math.floor(Math.random()*500000+100000);
-(function(apiKey){
-    (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
-    v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
-        o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
-        y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js';
-        z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
-        // Call this whenever information about your visitors becomes available
-        // Please use Strings, Numbers, or Bools for value types.
-        pendo.initialize({
-            visitor: {
-                id: random_number,   // Required if user is logged in
-                email: random_number+'@pendo.io',
-                name: 'John Doe',
-                role: 'Tester',
-                priority: false,
-                // language2: 'de'
-                // You can add any additional visitor level key-values here,
-                // as long as it's not one of the above reserved names.
-            },
-            account: {
-                id: 12345, // Highly recommended
-                name: 'Acme',        // Optional
-                planLevel: 'Custom',   // Optional
-                PlanPrice: 1000,   // Optional
-                creationDate: 2019-01-02 // Optional
-                // You can add any additional account level key-values here,
-                // as long as it's not one of the above reserved names.
-            },
-            parentAccount: {
-              id: 'parentId1',
-              name: 'parentAccount1'
-            }
-        });
-})('72b9834d-442b-4db6-5ceb-ee727850772b');
-</script>
+<body>
+    <div class="container">
+        <nav>
+            <a href="https://johnrix.dev">HOME</a>
+            <a href="https://johnrix.dev/projects">PROJECTS</a>
+            <a href="https://johnrix.dev/contact">CONTACT</a>
+            <a href="https://johnrix.dev/photos">PHOTOS</a>
+        </nav>
+
+        <section class="content">
+            <h1>Pendo Testing</h1>
+            <h2>Sandbox for testing the Pendo JavaScript Agent</h2>
+
+            <ul>
+              <li><a href="https://johnrix.dev/pendo/segment">Segment Install</a></li>
+              <li><a href="https://johnrix.dev/pendo/app2">Secondary App</a></li>
+              <li><a href="https://johnrix.dev/pendo/test">Simple Test</a></li>
+            </ul>
+            <p>This is some paragraph text.</p>
+            <button class="button">ONE</button>
+            <button class="button">TWO</button>
+            <button class="button">THREE</button>
+            <br><br>
+            <div class="pendo_group_1"></div>
+            <form>
+              First name:<br>
+              <input type="text" name="firstname"><br>
+              Last name:<br>
+              <input type="text" name="lastname">
+              </form>
+              <p>Choose your ice cream flavor below.</p>
+            <form>
+              <input type="radio" name="flavor" value="chocolate" checked> Chocolate<br>
+              <input type="radio" name="flavor" value="vanilla"> Vanilla<br>
+              <input type="radio" name="flavor" value="strawberry"> Strawberry
+            </form>
+            <br>
+            <button class="button" onclick="track_event()">TRACK EVENT TEST</button>
+            <br><br>
+            <table style="width:100%" border= "1px solid black">
+              <tr>
+              <th>Firstname</th>
+              <th>Lastname</th> 
+              <th>Age</th>
+              </tr>
+              <tr>
+              <td>Jill</td>
+              <td>Smith</td>
+              <td>50</td>
+              </tr>
+              <tr>
+              <td>Eve</td>
+              <td>Jackson</td>
+              <td>94</td>
+              </tr>
+              <tr>
+              <td>John</td>
+              <td>Doe</td>
+              <td>80</td>
+              </tr>
+            </table>
+          </section>
+    </div>
+
+  <script>
+  function track_event() {
+  pendo.track("Track Event Test", {
+    property_test_1: "this is only a test",
+    property_test_2: "testing testing"
+  });
+  }
+  var random_number = Math.floor(Math.random()*500000+100000);
+  (function(apiKey){
+      (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
+      v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
+          o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
+          y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js';
+          z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
+          // Call this whenever information about your visitors becomes available
+          // Please use Strings, Numbers, or Bools for value types.
+          pendo.initialize({
+              visitor: {
+                  id: random_number,   // Required if user is logged in
+                  email: random_number+'@pendo.io',
+                  name: 'John Doe',
+                  role: 'Tester',
+                  priority: false,
+                  // language2: 'de'
+                  // You can add any additional visitor level key-values here,
+                  // as long as it's not one of the above reserved names.
+              },
+              account: {
+                  id: 12345, // Highly recommended
+                  name: 'Acme',        // Optional
+                  planLevel: 'Custom',   // Optional
+                  PlanPrice: 1000,   // Optional
+                  creationDate: 2019-01-02 // Optional
+                  // You can add any additional account level key-values here,
+                  // as long as it's not one of the above reserved names.
+              },
+              parentAccount: {
+                id: 'parentId1',
+                name: 'parentAccount1'
+              }
+          });
+  })('72b9834d-442b-4db6-5ceb-ee727850772b');
+  </script>
+</body>

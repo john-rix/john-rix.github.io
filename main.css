@@ -3,6 +3,7 @@ body {
     font-size: 20px;
     padding: 5vh 10vh;
     color: #363636;
+    background-color: rgb(252, 252, 252);
 }
 
 .container {
@@ -33,9 +34,15 @@ h1 {
 }
 
 h2 {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    margin-bottom: 35px;
 }
 
 p {
     line-height: 1.6;
+}
+
+.photo {
+    max-width: 100%;
+    height: auto;
 }

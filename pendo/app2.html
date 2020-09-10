@@ -1,10 +1,30 @@
-<head>
-  <link rel="stylesheet" href="/main.css">
-</head>
-<ul>
-  <li><a href="https://johnrix.dev/pendo">Main</a></li>
-</ul>
-<h1>This page uses an API key from a different app.</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>John Rix - Pendo</title>
+        <link rel="stylesheet" href="../main.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Alata" rel="stylesheet">
+    </head>
+
+<body>
+    <div class="container">
+        <nav>
+            <a href="https://johnrix.dev">HOME</a>
+            <a href="https://johnrix.dev/projects">PROJECTS</a>
+            <a href="https://johnrix.dev/contact">CONTACT</a>
+            <a href="https://johnrix.dev/photos">PHOTOS</a>
+        </nav>
+
+        <section class="content">
+            <h1>Secondary App</h1>
+            <h2>This pages uses an API key from a secondary app</h2>
+        </section>
+    </div>
+</body>
+
 <script>
 function track_event() {
 pendo.track("Track Event Test", {
