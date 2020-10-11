@@ -11,8 +11,6 @@ body {
     right:0;
     top:0; 
     bottom:0;
-    margin-top: 50px;
-    margin-bottom: 50px;
 }
 #calculator {
     width: 300px;
@@ -52,4 +50,9 @@ body {
 }
 .operator:hover {
     background-color: rgba(238, 187, 92, 0.8);
+}
+
+/* make calculator wider for small screens */
+@media (max-width: 440px) {
+    #calculator {width: 85vw;}
 }
