@@ -147,17 +147,14 @@ function loadLibrary() {
         const savedLibraryParsed = JSON.parse(savedLibraryString)
         if (savedLibraryParsed == []) {
             library = []
-            // console.log('we made it to option 1 (localStorage available and we have an empty saved library')
         } else if (savedLibraryParsed == null) {
             const example1 = new Book('One Flew Over the Cuckoo\'s Nest', 'Ken Kesey', 320, true)
             const example2 = new Book('The Fifth Season', 'N.K. Jemisin', 512, true)
             const example3 = new Book('Lonesome Dove', 'Larry McMurtry', 843, false)
             const example4 = new Book('American Gods', 'Neil Gaiman', 592, true)
             library.push(example1, example2, example3, example4)
-            // console.log('we made it to option 2 (localStorage available but we have no saved library')
         } else {
             library = savedLibraryParsed
-            // console.log('we made it to option 3 (localStorage available and we have something in our saved library')
         }
     } else {
         const example1 = new Book('One Flew Over the Cuckoo\'s Nest', 'Ken Kesey', 320, true)
@@ -165,7 +162,6 @@ function loadLibrary() {
         const example3 = new Book('Lonesome Dove', 'Larry McMurtry', 843, false)
         const example4 = new Book('American Gods', 'Neil Gaiman', 592, true)
         library.push(example1, example2, example3, example4)
-        // console.log('we made it to option 4 (no localStorage available at all')
     }
     renderLibrary()
     addListeners()
