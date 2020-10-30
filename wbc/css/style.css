@@ -1,0 +1,55 @@
+/* Custom Stylesheet */
+
+nav ul a,
+nav .brand-logo {
+  color: #37474f;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.sidenav-trigger {
+  color: #37474f;
+}
+
+.parallax-container {
+  min-height: 380px;
+  /* line-height: 0; */
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    line-height: 0;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+  .beer {
+    left: 8% !important;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
