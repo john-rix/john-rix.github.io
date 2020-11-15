@@ -67,11 +67,11 @@ function showDetails() {
   if (httpRequest.readyState === XMLHttpRequest.DONE) {
     if (httpRequest.status === 200) {
       let details = JSON.parse(httpRequest.response);
-      name.innerText = `Name: ${details.name}`;
-      weight.innerText = `Weight: ${details.weight}`;
-      height.innerText = `Height: ${details.height}`;
-      ability.innerText = `Ability: ${details.abilities[0].ability.name}`;
-      baseHp.innerText = `Base HP: ${details.stats[0].base_stat}`;
+      name.innerHTML = `<span class="label">Name:</span> ${details.name}`;
+      weight.innerHTML = `<span class="label">Weight:</span> ${details.weight}`;
+      height.innerHTML = `<span class="label">Height:</span> ${details.height}`;
+      ability.innerHTML = `<span class="label">Ability:</span> ${details.abilities[0].ability.name}`;
+      baseHp.innerHTML = `<span class="label">Base HP:</span> ${details.stats[0].base_stat}`;
       artwork.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${details.id}.png`;
     } else {
       list.innerText = "Pokemon info not available";
