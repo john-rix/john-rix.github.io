@@ -1,135 +1,248 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
 
 body {
-    text-align: center;
-    background-color: rgb(226, 226, 226);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-image: url('/images/books.jpg');
-    background-size: cover;
+  text-align: center;
+  background-color: rgb(226, 226, 226);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-image: url("/images/books.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 #titleContainer {
-    margin: 80px 0px 40px 0px;
+  margin: 80px 0px 40px 0px;
 }
 
 h1 {
-    font-size: 7vh;
-    color: white;
+  font-size: 7vh;
+  color: white;
 }
 
 button {
-    border-radius: 2px;
-    border: 0;
-    padding: 8px;
-    outline: 0;
+  border-radius: 2px;
+  border: 0;
+  padding: 8px;
+  outline: 0;
 }
 
 #buttonContainer {
-    margin: 60px 40px 40px 40px;
+  margin: 60px 40px 40px 40px;
 }
 
 #addABookButton {
-    background-color: rgb(25, 103, 167);
-    color: white;
-    padding: 12px 24px;
-    font-size: 18px;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  background-color: rgb(49, 121, 121);
+  color: white;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 2px;
+  border: 1px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 #addABookButton:hover {
-    background-color: rgb(28, 115, 187);
+  background-color: rgb(42, 102, 102);
 }
 
 #formContainer {
-    background-color: #849daa;
-    line-height: 2;
-    text-align: center;
-    padding: 20px;
-    outline: none;
-    margin: auto;
-    display: none;
+  width: 340px;
+  line-height: 2;
+  text-align: center;
+  padding: 20px;
+  outline: none;
+  margin: auto;
+  display: none;
+}
+
+#form {
+  width: 300px;
+  background-color: rgb(49, 121, 121);
+  padding: 20px;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid white;
+}
+
+.formField {
+  width: 230px;
+  height: 27px;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+label {
+    color: white;
 }
 
 #submit {
-    width: 100px;
-    margin-top: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  width: 130px;
+  margin-top: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  font-size: 15px;
 }
 
 #submit:hover {
-    background-color: white;
+  background-color: white;
 }
 
 #grid {
-    display: grid;
-    grid-gap: 2vh; 
-    width: 85vw;
-    margin: 40px auto auto auto;
+  display: grid;
+  grid-gap: 2vh;
+  width: 85vw;
+  margin: 40px auto 30px auto;
 }
 
 .card {
-    background-color: rgb(245, 245, 245);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    border-radius: 2px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 230px;
-    text-align: left;
-    text-overflow: clip;
-    padding: 25px 20px;
+  background-color: rgb(245, 245, 245);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 230px;
+  text-align: left;
+  text-overflow: clip;
+  padding: 25px 20px;
 }
 
 .bookTitle {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .readButton {
-    width: 130px;
+  width: 130px;
 }
 
 .removeButton {
-    width: 130px;
-    background-color: rgb(180, 180, 180);
+  width: 130px;
+  background-color: rgb(180, 180, 180);
 }
 
 .removeButton:hover {
-    background-color: rgb(192, 192, 192);
+  background-color: rgb(192, 192, 192);
 }
 
 .green {
-    background-color: rgb(144, 184, 144);
+  background-color: rgb(144, 184, 144);
 }
 
 .green:hover {
-    background-color: rgb(158, 202, 158);
+  background-color: rgb(158, 202, 158);
 }
 
 .red {
-    background-color: rgb(197, 130, 104);
+  background-color: rgb(197, 130, 104);
 }
 
 .red:hover {
-    background-color: rgb(211, 139, 110);
+  background-color: rgb(211, 139, 110);
 }
 
 @media (min-width: 700px) {
-    #grid { grid-template-columns: repeat(2, 1fr); }
-    #grid {width: 75vw; }
+  #grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #grid {
+    width: 75vw;
+  }
 }
 
 @media (min-width: 1200px) {
-    #grid { grid-template-columns: repeat(3, 1fr); }
+  #grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
