@@ -15,7 +15,8 @@ body {
     text-align: center;
     background-color: rgb(226, 226, 226);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-image: url('/images/library.jpg');
+    background-image: url('/images/books.jpg');
+    background-size: cover;
 }
 
 #titleContainer {
@@ -23,7 +24,8 @@ body {
 }
 
 h1 {
-    font-size: 5vh;
+    font-size: 7vh;
+    color: white;
 }
 
 button {
