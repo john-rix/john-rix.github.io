@@ -122,28 +122,31 @@
         //testing resource center animation
         //rc defaults to being off screen (global CSS)
         // create an observer instance
-        pendo.bodyObserver = new MutationObserver(function(mutations) {
-          mutations.forEach(function(mutation) {
-            console.log(mutation);
-            if (mutation.addedNodes.length) {
-              if (mutation.addedNodes[0].id && mutation.addedNodes[0].id.contains('pendo-resource-center-container')) {
-                //animate();
-                console.log('we detected rc container')
-                observer.disconnect()
+        pendo.addBodyMutationListener = function() {
+            pendo.bodyObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+              console.log(mutation);
+              if (mutation.addedNodes.length) {
+                if (added_node.id == 'pendo-resource-center-container') {
+                  //animate();
+                  console.log('we detected rc container')
+                  observer.disconnect()
+                }
               }
-            }
+            });
           });
-        });
 
-        var config = {
-          attributes: false,
-          childList: true,
-          characterData: true,
-          subtree: true
-        };
+          var config = {
+            attributes: false,
+            childList: true,
+            characterData: true,
+            subtree: true
+          };
 
-        var body = document.querySelector('body');
-        pendo.bodyObserver.observe(body, config);
+          var body = document.querySelector('body');
+          pendo.bodyObserver.observe(body, config);
+        }
+       
         pendo.addBodyMutationListener();
 
       })("72b9834d-442b-4db6-5ceb-ee727850772b");
