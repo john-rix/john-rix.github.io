@@ -127,11 +127,11 @@
               if(added_node.id == 'pendo-resource-center-container') {
                 console.log('#rc has been added');
                 const rc = document.getElementById('pendo-resource-center-container');
-                rc.classList.add('animate');
-                setTimeout(function(){ 
-                  console.log('timeout complete')
-                  rc.classList.toggle('animate');
-                 }, 1000);
+                rc.classList.add('animate');//we're seeing the transition to hidden
+                // setTimeout(function(){ 
+                //   console.log('timeout complete')
+                //   rc.classList.toggle('animate');
+                //  }, 1000);
               }
             });
           });
