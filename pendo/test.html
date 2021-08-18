@@ -124,14 +124,12 @@
         // create an observer instance
         pendo.addBodyMutationListener = function() {
             pendo.bodyObserver = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-              console.log(mutation);
-              if (mutation.addedNodes.length) {
-                if (added_node.id == 'pendo-resource-center-container') {
-                  //animate();
-                  console.log('we detected rc container')
-                  observer.disconnect()
-                }
+            mutations.addedNodes.forEach(function(added_node) {
+              console.log(mutation);//testing
+              if (added_node.id == 'pendo-resource-center-container') {
+                //animate();
+                console.log('we detected rc container')
+                observer.disconnect()
               }
             });
           });
