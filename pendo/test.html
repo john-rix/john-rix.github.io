@@ -118,6 +118,31 @@
             name: "parentAccount1",
           },
         });
+
+        //testing resource center animation
+        //rc defaults to being off screen (global CSS)
+        // create an observer instance
+        pendo.bodyObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length) {
+              if (mutation.addedNodes[0].id && mutation.addedNodes[0].id.contains('pendo-resource-center-container')) {
+                //animate();
+                console.log('we detected rc container')
+              }
+            }
+          });
+        });
+
+        var config = {
+          attributes: false,
+          childList: true,
+          characterData: true,
+          subtree: true
+        };
+
+        pendo.bodyObserver.observe(target, config);
+        pendo.addBodyMutationListener();
+
       })("72b9834d-442b-4db6-5ceb-ee727850772b");
     </script>
   </body>
