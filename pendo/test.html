@@ -126,6 +126,7 @@
             mutation.addedNodes.forEach(function(added_node) {
               if(added_node.id == 'pendo-resource-center-container') {
                 console.log('#rc has been added');
+                debugger;
                 setTimeout(function(){ 
                   console.log('timeout complete')
                   const rc = document.getElementById('pendo-resource-center-container');
