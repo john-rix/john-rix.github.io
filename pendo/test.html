@@ -9,7 +9,7 @@
   <body>
     <div class="container">
       <section class="content">
-          <h1>Testing snippet modifications</h1>
+        <h1>Testing snippet modifications</h1>
         <ul>
           <li>
             <a href="https://johnrix.dev/pendo/segment">segment install</a>
@@ -118,24 +118,42 @@
             name: "parentAccount1",
           },
         });
-
-        //testing resource center animation
-        //rc defaults to being off screen (global CSS)
-        const observer = new MutationObserver(function(mutations_list) {
-          mutations_list.forEach(function(mutation) {
-            mutation.addedNodes.forEach(function(added_node) {
-              if(added_node.id == 'pendo-resource-center-container') {
-                console.log('#rc has been added');
-                const rc = document.getElementById('pendo-resource-center-container');
-                rc.classList.add('animate');
-              }
-            });
-          });
-        });
-        observer.observe(document.querySelector("body"), { subtree: false, childList: true });
-        //end of test
-
       })("72b9834d-442b-4db6-5ceb-ee727850772b");
     </script>
+
+    <!-- testing resource center animation -->
+    <style>
+      .animate {
+        right: 0px !important;
+      }
+
+      #pendo-resource-center-container {
+        position: absolute !important;
+        transition: all 0.5s ease !important;
+        right: -300px !important;
+      }
+    </style>
+    
+    <script>
+      const observer = new MutationObserver(function (mutations_list) {
+        mutations_list.forEach(function (mutation) {
+          mutation.addedNodes.forEach(function (added_node) {
+            if (added_node.id == "pendo-resource-center-container") {
+              console.log("#rc has been added");
+              const rc = document.getElementById(
+                "pendo-resource-center-container"
+              );
+              rc.classList.add("animate");
+            }
+          });
+        });
+      });
+      observer.observe(document.querySelector("body"), {
+        subtree: false,
+        childList: true,
+      });
+    </script>
+    <!-- end of test -->
+
   </body>
 </html>
