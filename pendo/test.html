@@ -61,13 +61,8 @@
       </section>
     </div>
 
+    <!-- Pendo installation -->
     <script>
-      function track_event() {
-        pendo.track("Track Event Test", {
-          property_test_1: "this is only a test",
-          property_test_2: "testing testing",
-        });
-      }
       var random_number = Math.floor(Math.random() * 500000 + 100000);
       (function (apiKey) {
         (function (p, e, n, d, o) {
@@ -91,6 +86,7 @@
           z = e.getElementsByTagName(n)[0];
           z.parentNode.insertBefore(y, z);
         })(window, document, "script", "pendo");
+
         // Call this whenever information about your visitors becomes available
         // Please use Strings, Numbers, or Bools for value types.
         pendo.initialize({
@@ -118,42 +114,60 @@
             name: "parentAccount1",
           },
         });
+
+        //Track Event test
+        function track_event() {
+          pendo.track("Track Event Test", {
+            property_test_1: "this is only a test",
+            property_test_2: "testing testing",
+          });
+        }
       })("72b9834d-442b-4db6-5ceb-ee727850772b");
     </script>
 
-    <!-- testing resource center animation -->
-    <style>
-      .animate {
-        right: 0px !important;
-      }
-
-      #pendo-resource-center-container {
-        position: absolute !important;
-        transition: all 0.5s ease !important;
-        right: -300px !important;
-      }
-    </style>
-    
+    <!-- testing RC animation -->
     <script>
-      const observer = new MutationObserver(function (mutations_list) {
-        mutations_list.forEach(function (mutation) {
-          mutation.addedNodes.forEach(function (added_node) {
-            if (added_node.id == "pendo-resource-center-container") {
-              console.log("#rc has been added");
-              const rc = document.getElementById(
-                "pendo-resource-center-container"
-              );
-              rc.classList.add("animate");
-            }
+      function animateRC() {
+        const observer = new MutationObserver(function (mutations_list) {
+          mutations_list.forEach(function (mutation) {
+            mutation.addedNodes.forEach(function (added_node) {
+              if (added_node.id == "pendo-resource-center-container") {
+                const rc = document.querySelector("#pendo-resource-center-container");
+                rc.classList.add("rc-hidden");
+                setTimeout(function () {
+                  rc.classList.add("rc-transition");
+                  rc.classList.add("rc-visible");
+                }, 0);
+              }
+            });
           });
         });
-      });
-      observer.observe(document.querySelector("body"), {
-        subtree: false,
-        childList: true,
-      });
+        observer.observe(document.querySelector("body"), {
+          subtree: false,
+          childList: true,
+        });
+      }
+      animateRC();
     </script>
-    <!-- end of test -->
 
+    <!-- rc animation styles (add to js)-->
+    <style>
+      #pendo-resource-center-container {
+        position: absolute !important;
+        height: 85vh !important;
+      }
+
+      .rc-transition {
+        transition: all 0.35s ease !important;
+      }
+
+      .rc-hidden {
+        right: -350px !important;
+      }
+
+      .rc-visible {
+        right: 0px !important;
+      }
+    </style>
   </body>
 </html>
