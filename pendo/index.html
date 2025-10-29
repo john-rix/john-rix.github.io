@@ -412,8 +412,9 @@
     </div>
 
     <script>
-        // Generate random number for Pendo visitor ID
+        // Generate random visitor ID for Pendo
         const random_number = Math.floor(Math.random() * 1000000);
+        const visitor_id = 'visitor_' + random_number;
 
         // Pendo Installation Code
         (function(apiKey){
@@ -425,8 +426,8 @@
                 
                 pendo.initialize({
                     visitor: {
-                        id: random_number,
-                        email: random_number+'@pendo.io',
+                        id: visitor_id,
+                        email: visitor_id + '@pendo.io',
                         role: 'Tester',
                         priority: false
                     },
@@ -473,9 +474,9 @@
             document.title = pageName.charAt(0).toUpperCase() + pageName.slice(1) + ' - Acme Analytics';
             
             // Trigger Pendo pageLoad
-            //if (window.pendo) {
-            //    pendo.pageLoad();
-            //}
+            if (window.pendo) {
+                pendo.pageLoad();
+            }
         }
         
         // Handle navigation clicks
