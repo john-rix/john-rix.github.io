@@ -1,53 +1,410 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- referencing a local css override/theme file which is compiled via sass -->
-    <link rel="stylesheet" href="/scss/custom_compiled.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <!-- jQuery required for expandable nav used in mobile view -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <title>John Rix</title>
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Rix - Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <nav class="navbar navbar-expand-md navbar-light d-print">
-      <a class="navbar-brand active" href="https://johnrix.dev">John Rix</a>
-      
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="https://johnrix.dev">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/projects.html">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/contact.html">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/photos.html">Photos</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5016 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-    <div class="jumbotron">
-      <h1 class="display-4">John Rix</h1>
-      <p class="lead">Web Developer / Professional Services Engineer</p>
-      <hr class="my-4">
-      <p style="max-width:900px;">Hey! My name is John and I'm a front end web developer based in Golden, Colorado. I enjoy creating fast, responsive, and scalable web experiences. I have 6 years of experience in rapid-growth stage companies, where I've collaborated with clients, product teams, and stakeholders from all aspects of the SaaS environment.</p>
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 60px 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .directory-section {
+            margin-top: 40px;
+        }
+
+        .directory-title {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .directory-list {
+            list-style: none;
+        }
+
+        .directory-item {
+            margin-bottom: 15px;
+        }
+
+        .directory-link {
+            display: flex;
+            align-items: center;
+            padding: 20px 25px;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5016 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(26, 77, 46, 0.4);
+        }
+
+        .directory-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(26, 77, 46, 0.6);
+        }
+
+        .directory-link:active {
+            transform: translateY(0);
+        }
+
+        .directory-icon {
+            margin-right: 15px;
+            font-size: 1.3rem;
+        }
+
+        .directory-path {
+            font-family: 'Courier New', monospace;
+            opacity: 0.9;
+        }
+
+        .directory-description {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 40px 25px;
+            }
+            
+            .directory-link {
+                padding: 18px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            background: #e2e8f0;
+            color: #4a5568;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .back-button:hover {
+            background: #cbd5e0;
+            transform: translateX(-2px);
+        }
+
+        .pendo-content {
+            text-align: center;
+        }
+
+        .pendo-content h2 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .pendo-content p {
+            color: #718096;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .test-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #fed7d7;
+            color: #c53030;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .contact-section {
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .contact-title {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 18px;
+            background: #f7fafc;
+            color: #4a5568;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            border: 2px solid transparent;
+        }
+
+        .contact-link:hover {
+            background: #edf2f7;
+            border-color: #2d5016;
+            color: #2d5016;
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            .contact-section {
+                margin-top: 40px;
+                padding-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Landing Page -->
+        <div id="landing" class="page-content active">
+            <h1>John Rix</h1>
+            <p class="subtitle">Developer Site</p>
+            
+            <div class="directory-section">
+                <h2 class="directory-title">Directories</h2>
+                <ul class="directory-list">
+                    <li class="directory-item">
+                        <a href="#" class="directory-link" onclick="navigateTo('pendo'); return false;">
+                            <span class="directory-icon">📁</span>
+                            <div>
+                                <div class="directory-path">/pendo</div>
+                                <div class="directory-description">Pendo.io testing environment</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="directory-item">
+                        <a href="#" class="directory-link" onclick="navigateTo('list'); return false;">
+                            <span class="directory-icon">📋</span>
+                            <div>
+                                <div class="directory-path">/list</div>
+                                <div class="directory-description">List management tool</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="directory-item">
+                        <a href="#" class="directory-link" onclick="navigateTo('pokedex'); return false;">
+                            <span class="directory-icon">⚡</span>
+                            <div>
+                                <div class="directory-path">/pokedex</div>
+                                <div class="directory-description">Pokémon database explorer</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="directory-item">
+                        <a href="#" class="directory-link" onclick="navigateTo('calculator'); return false;">
+                            <span class="directory-icon">🔢</span>
+                            <div>
+                                <div class="directory-path">/calculator</div>
+                                <div class="directory-description">Simple calculator app</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="directory-item">
+                        <a href="#" class="directory-link" onclick="navigateTo('drumkit'); return false;">
+                            <span class="directory-icon">🥁</span>
+                            <div>
+                                <div class="directory-path">/drumkit</div>
+                                <div class="directory-description">Interactive drum kit</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="contact-section">
+                <h2 class="contact-title">Contact</h2>
+                <ul class="contact-list">
+                    <li class="contact-item">
+                        <a href="https://github.com/john-rix" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <span class="contact-icon">🐙</span>
+                            github.com/john-rix
+                        </a>
+                    </li>
+                    <li class="contact-item">
+                        <a href="https://linkedin.com/in/rix-john" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <span class="contact-icon">💼</span>
+                            linkedin.com/in/rix-john
+                        </a>
+                    </li>
+                    <li class="contact-item">
+                        <a href="mailto:me@johnrix.dev" class="contact-link">
+                            <span class="contact-icon">✉️</span>
+                            me@johnrix.dev
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Pendo Page -->
+        <div id="pendo" class="page-content">
+            <button class="back-button" onclick="navigateTo('landing')">
+                ← Back to Home
+            </button>
+            <div class="pendo-content">
+                <h2>/pendo</h2>
+                <p>This is a testing environment for Pendo.io work.</p>
+                <span class="test-badge">TEST ENVIRONMENT</span>
+            </div>
+        </div>
+
+        <!-- List Page -->
+        <div id="list" class="page-content">
+            <button class="back-button" onclick="navigateTo('landing')">
+                ← Back to Home
+            </button>
+            <div class="pendo-content">
+                <h2>/list</h2>
+                <p>List management tool coming soon.</p>
+            </div>
+        </div>
+
+        <!-- Pokedex Page -->
+        <div id="pokedex" class="page-content">
+            <button class="back-button" onclick="navigateTo('landing')">
+                ← Back to Home
+            </button>
+            <div class="pendo-content">
+                <h2>/pokedex</h2>
+                <p>Pokémon database explorer coming soon.</p>
+            </div>
+        </div>
+
+        <!-- Calculator Page -->
+        <div id="calculator" class="page-content">
+            <button class="back-button" onclick="navigateTo('landing')">
+                ← Back to Home
+            </button>
+            <div class="pendo-content">
+                <h2>/calculator</h2>
+                <p>Calculator app coming soon.</p>
+            </div>
+        </div>
+
+        <!-- Drumkit Page -->
+        <div id="drumkit" class="page-content">
+            <button class="back-button" onclick="navigateTo('landing')">
+                ← Back to Home
+            </button>
+            <div class="pendo-content">
+                <h2>/drumkit</h2>
+                <p>Interactive drum kit coming soon.</p>
+            </div>
+        </div>
     </div>
-    
-  </body>
+
+    <script>
+        function navigateTo(page) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(p => p.classList.remove('active'));
+            
+            const targetPage = document.getElementById(page);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            window.history.pushState({page: page}, '', page === 'landing' ? '/' : `/${page}`);
+        }
+
+        window.addEventListener('popstate', function(e) {
+            const page = e.state?.page || 'landing';
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(p => p.classList.remove('active'));
+            document.getElementById(page)?.classList.add('active');
+        });
+
+        window.addEventListener('load', function() {
+            const path = window.location.pathname;
+            if (path === '/pendo') {
+                navigateTo('pendo');
+            }
+        });
+    </script>
+</body>
 </html>
