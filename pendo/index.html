@@ -1,223 +1,512 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>John Rix - Pendo</title>
-  </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Acme Analytics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <body>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f7fa;
+            color: #2d3748;
+        }
+
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #5850ec;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav a:hover {
+            background: #f7fafc;
+            color: #5850ec;
+        }
+
+        .nav a.active {
+            color: #5850ec;
+            background: #eef2ff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #718096;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .stat-card h3 {
+            font-size: 0.875rem;
+            color: #718096;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #5850ec;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #4c46d4;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .content-hidden {
+            display: none;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #5850ec;
+            box-shadow: 0 0 0 3px rgba(88, 80, 236, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Acme Analytics</div>
+        <nav class="nav">
+            <a href="#dashboard" class="nav-link" data-page="dashboard">Dashboard</a>
+            <a href="#analytics" class="nav-link" data-page="analytics">Analytics</a>
+            <a href="#reports" class="nav-link" data-page="reports">Reports</a>
+            <a href="#settings" class="nav-link" data-page="settings">Settings</a>
+        </nav>
+    </div>
+
     <div class="container">
-      <section class="content">
-        <h1>Pendo Sandbox</h1>
-        <h3>This is only a test</h3>
-        <ul>
-          <li>
-            <a href="https://johnrix.dev/pendo/segment">segment install</a>
-          </li>
-          <li><a href="https://johnrix.dev/pendo/app2">secondary app</a></li>
-          <li><a href="https://johnrix.dev/pendo/test2">additional page</a></li>
-          <li><a href="https://johnrix.dev/pendo/test">test</a></li>
-        </ul>
-        <p>This is some paragraph text.</p>
-        <button class="button">ONE</button>
-        <button class="button">TWO</button>
-        <button class="button">THREE</button>
-        <br /><br />
-        <div class="pendo_group_1"></div>
-        <form>
-          First name:<br />
-          <input type="text" name="firstname" /><br />
-          Last name:<br />
-          <input type="text" name="lastname" />
-        </form>
-        <p>Choose your ice cream flavor below.</p>
-        <form>
-          <input type="radio" name="flavor" value="chocolate" checked />
-          Chocolate<br />
-          <input type="radio" name="flavor" value="vanilla" /> Vanilla<br />
-          <input type="radio" name="flavor" value="strawberry" /> Strawberry
-        </form>
-        <br />
-        <form action="">
-          <label for="cars">Choose a car:</label>
-          <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-          </select>
-          <br /><br />
-          <input type="submit" value="Submit" />
-        </form>
-        <button class="button" onclick="track_event()">TRACK EVENT TEST</button>
-        <ol>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-          <li>example</li>
-        </ol>
-      </section>
+        <!-- Dashboard Page -->
+        <div id="page-dashboard" class="page-content">
+            <div class="page-header">
+                <h1>Dashboard</h1>
+                <p>Welcome back! Here's what's happening with your account.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card" id="stat-users">
+                    <h3>Total Users</h3>
+                    <div class="value">2,543</div>
+                </div>
+                <div class="stat-card" id="stat-revenue">
+                    <h3>Revenue</h3>
+                    <div class="value">$45,231</div>
+                </div>
+                <div class="stat-card" id="stat-sessions">
+                    <h3>Active Sessions</h3>
+                    <div class="value">182</div>
+                </div>
+                <div class="stat-card" id="stat-conversion">
+                    <h3>Conversion Rate</h3>
+                    <div class="value">3.24%</div>
+                </div>
+            </div>
+
+            <div class="card" id="quick-actions">
+                <h2>Quick Actions</h2>
+                <button class="btn" id="btn-create-report">Create New Report</button>
+                <button class="btn btn-secondary" id="btn-export-data">Export Data</button>
+            </div>
+
+            <div class="card" id="recent-activity">
+                <h2>Recent Activity</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>john@example.com</td>
+                            <td>Created report</td>
+                            <td>2 minutes ago</td>
+                        </tr>
+                        <tr>
+                            <td>sarah@example.com</td>
+                            <td>Updated settings</td>
+                            <td>15 minutes ago</td>
+                        </tr>
+                        <tr>
+                            <td>mike@example.com</td>
+                            <td>Exported data</td>
+                            <td>1 hour ago</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Analytics Page -->
+        <div id="page-analytics" class="page-content content-hidden">
+            <div class="page-header">
+                <h1>Analytics</h1>
+                <p>Deep dive into your performance metrics.</p>
+            </div>
+
+            <div class="card" id="analytics-chart">
+                <h2>Performance Overview</h2>
+                <p>Chart visualization would go here</p>
+                <button class="btn" id="btn-refresh-analytics">Refresh Data</button>
+            </div>
+
+            <div class="card" id="analytics-filters">
+                <h2>Filters</h2>
+                <div class="form-group">
+                    <label>Date Range</label>
+                    <select id="date-range">
+                        <option>Last 7 days</option>
+                        <option>Last 30 days</option>
+                        <option>Last 90 days</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Metric Type</label>
+                    <select id="metric-type">
+                        <option>Users</option>
+                        <option>Sessions</option>
+                        <option>Conversion</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Page -->
+        <div id="page-reports" class="page-content content-hidden">
+            <div class="page-header">
+                <h1>Reports</h1>
+                <p>Generate and manage your custom reports.</p>
+            </div>
+
+            <div class="card" id="report-builder">
+                <h2>Create New Report</h2>
+                <div class="form-group">
+                    <label>Report Name</label>
+                    <input type="text" id="report-name" placeholder="Enter report name">
+                </div>
+                <div class="form-group">
+                    <label>Report Type</label>
+                    <select id="report-type">
+                        <option>User Analytics</option>
+                        <option>Revenue Summary</option>
+                        <option>Activity Log</option>
+                    </select>
+                </div>
+                <button class="btn" id="btn-generate-report">Generate Report</button>
+            </div>
+
+            <div class="card" id="saved-reports">
+                <h2>Saved Reports</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Report Name</th>
+                            <th>Type</th>
+                            <th>Created</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Q4 User Growth</td>
+                            <td>User Analytics</td>
+                            <td>Oct 15, 2025</td>
+                            <td><button class="btn btn-secondary">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>Monthly Revenue</td>
+                            <td>Revenue Summary</td>
+                            <td>Oct 1, 2025</td>
+                            <td><button class="btn btn-secondary">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div id="page-settings" class="page-content content-hidden">
+            <div class="page-header">
+                <h1>Settings</h1>
+                <p>Manage your account preferences and configuration.</p>
+            </div>
+
+            <div class="card" id="account-settings">
+                <h2>Account Settings</h2>
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" id="company-name" value="Acme Corp">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" value="admin@acme.com">
+                </div>
+                <div class="form-group">
+                    <label>Timezone</label>
+                    <select id="timezone">
+                        <option>UTC-5 (Eastern)</option>
+                        <option>UTC-6 (Central)</option>
+                        <option>UTC-7 (Mountain)</option>
+                        <option>UTC-8 (Pacific)</option>
+                    </select>
+                </div>
+                <button class="btn" id="btn-save-settings">Save Changes</button>
+            </div>
+
+            <div class="card" id="notification-settings">
+                <h2>Notification Preferences</h2>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="email-notifications" checked> Email Notifications
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="weekly-reports" checked> Weekly Reports
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="alert-notifications"> Alert Notifications
+                    </label>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-      function track_event() {
-        pendo.track("Track Event Test", {
-          property_test_1: "this is only a test",
-          property_test_2: "testing testing",
+        // Generate random number for Pendo visitor ID
+        const random_number = Math.floor(Math.random() * 1000000);
+
+        // Pendo Installation Code
+        (function(apiKey){
+            (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
+            v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
+                o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
+                y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js';
+                z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
+                
+                pendo.initialize({
+                    visitor: {
+                        id: random_number,
+                        email: random_number+'@pendo.io',
+                        role: 'Tester',
+                        priority: false
+                    },
+                    account: {
+                        id: 12345,
+                        name: 'Acme',
+                        planLevel: 'Custom',
+                        PlanPrice: 1000,
+                        creationDate: '2019-01-02'
+                    }
+                });
+        })('ac7338d1-5267-4bda-692c-e8b55c9626b5');
+
+        // Simple routing system
+        const pages = ['dashboard', 'analytics', 'reports', 'settings'];
+        
+        function showPage(pageName) {
+            // Hide all pages
+            pages.forEach(p => {
+                const pageEl = document.getElementById(`page-${p}`);
+                if (pageEl) {
+                    pageEl.classList.add('content-hidden');
+                }
+            });
+            
+            // Show selected page
+            const selectedPage = document.getElementById(`page-${pageName}`);
+            if (selectedPage) {
+                selectedPage.classList.remove('content-hidden');
+            }
+            
+            // Update nav active state
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageName) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Update URL hash
+            window.location.hash = pageName;
+            
+            // Update page title
+            document.title = pageName.charAt(0).toUpperCase() + pageName.slice(1) + ' - Acme Analytics';
+            
+            // Trigger Pendo pageLoad
+            if (window.pendo) {
+                pendo.pageLoad();
+            }
+        }
+        
+        // Handle navigation clicks
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = e.target.dataset.page;
+                showPage(page);
+            });
         });
-      }
-      var random_number = Math.floor(Math.random() * 500000 + 100000);
-      (function (apiKey) {
-        (function (p, e, n, d, o) {
-          var v, w, x, y, z;
-          o = p[d] = p[d] || {};
-          o._q = [];
-          v = ["initialize", "identify", "updateOptions", "pageLoad"];
-          for (w = 0, x = v.length; w < x; ++w)
-            (function (m) {
-              o[m] =
-                o[m] ||
-                function () {
-                  o._q[m === v[0] ? "unshift" : "push"](
-                    [m].concat([].slice.call(arguments, 0))
-                  );
-                };
-            })(v[w]);
-          y = e.createElement(n);
-          y.async = !0;
-          y.src = "https://cdn.pendo.io/agent/static/" + apiKey + "/pendo.js";
-          z = e.getElementsByTagName(n)[0];
-          z.parentNode.insertBefore(y, z);
-        })(window, document, "script", "pendo");
-        // Call this whenever information about your visitors becomes available
-        // Please use Strings, Numbers, or Bools for value types.
-        pendo.initialize({
-          visitor: {
-            id: random_number, // Required if user is logged in
-            //email: random_number + "@pendo.io",
-            name: "John Doe",
-            role: "Tester",
-            priority: false,
-            // language2: 'de'
-            // You can add any additional visitor level key-values here,
-            // as long as it's not one of the above reserved names.
-          },
-          account: {
-            id: 1234567, // Highly recommended
-            name: "Acme", // Optional
-            planLevel: "Custom", // Optional
-            PlanPrice: 1000, // Optional
-            creationDate: 2019 - 01 - 02, // Optional
-            // You can add any additional account level key-values here,
-            // as long as it's not one of the above reserved names.
-          }
+        
+        // Handle browser back/forward
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.slice(1);
+            if (pages.includes(hash)) {
+                showPage(hash);
+            }
         });
-      })("72b9834d-442b-4db6-5ceb-ee727850772b");
+        
+        // Initialize on load
+        window.addEventListener('load', () => {
+            const initialPage = window.location.hash.slice(1) || 'dashboard';
+            showPage(pages.includes(initialPage) ? initialPage : 'dashboard');
+        });
+        
+        // Add some interactivity for testing
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btn')) {
+                console.log('Button clicked:', e.target.id || e.target.textContent);
+            }
+        });
     </script>
-  </body>
+</body>
 </html>
