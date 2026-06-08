@@ -328,6 +328,143 @@
             width: auto;
             margin-right: 0.5rem;
         }
+
+        /* Pendo Embedded Guide Container */
+        .guide-container-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .guide-container-card {
+            background: #2d3748;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .guide-container-card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        body.dark-mode .guide-container-card h2 {
+            color: #e2e8f0;
+        }
+
+        .guide-container-card .guide-meta {
+            font-size: 0.8rem;
+            color: #718096;
+            margin-bottom: 1rem;
+        }
+
+        body.dark-mode .guide-container-card .guide-meta {
+            color: #a0aec0;
+        }
+
+        .guide-resize-wrapper {
+            resize: both;
+            overflow: auto;
+            min-width: 280px;
+            max-width: 100%;
+            width: 100%;
+            min-height: 120px;
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 4px;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        body.dark-mode .guide-resize-wrapper {
+            border-color: #4a5568;
+        }
+
+        .guide-resize-label {
+            position: absolute;
+            top: 6px;
+            right: 28px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #a0aec0;
+            background: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            pointer-events: none;
+            letter-spacing: 0.5px;
+        }
+
+        body.dark-mode .guide-resize-label {
+            background: #2d3748;
+            color: #718096;
+        }
+
+        #pendo-guide-container {
+            width: 100%;
+            height: 100%;
+            min-height: 112px;
+            border-radius: 6px;
+            background: #f7fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a0aec0;
+            font-size: 0.875rem;
+            box-sizing: border-box;
+        }
+
+        body.dark-mode #pendo-guide-container {
+            background: #1a202c;
+            color: #718096;
+        }
+
+        .guide-width-controls {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .guide-width-btn {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            background: white;
+            color: #4a5568;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .guide-width-btn:hover {
+            border-color: #5850ec;
+            color: #5850ec;
+        }
+
+        body.dark-mode .guide-width-btn {
+            background: #4a5568;
+            border-color: #718096;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .guide-width-btn:hover {
+            border-color: #a78bfa;
+            color: #a78bfa;
+        }
+
+        #guide-width-display {
+            font-size: 0.8rem;
+            color: #718096;
+            align-self: center;
+            margin-left: auto;
+        }
+
+        body.dark-mode #guide-width-display {
+            color: #a0aec0;
+        }
     </style>
 </head>
 <body data-theme="light">
@@ -368,6 +505,32 @@
                 <div class="stat-card" id="stat-conversion">
                     <h3>Conversion Rate</h3>
                     <div class="value">3.24%</div>
+                </div>
+            </div>
+
+            <div class="guide-container-card" id="embedded-guide-card">
+                <h2>Embedded Guide</h2>
+                <p class="guide-meta">Resize the container below to test how your Pendo guide responds at different widths.</p>
+
+                <div class="guide-resize-wrapper" id="guide-resize-wrapper">
+                    <span class="guide-resize-label" id="guide-resize-label">↔↕ drag to resize</span>
+                    <div id="pendo-guide-container">
+                        Pendo embedded guide will appear here
+                    </div>
+                </div>
+
+                <div class="guide-width-controls">
+                    <button class="guide-width-btn" data-width="100%">Full width</button>
+                    <button class="guide-width-btn" data-width="768px">Tablet (768px)</button>
+                    <button class="guide-width-btn" data-width="480px">Mobile L (480px)</button>
+                    <button class="guide-width-btn" data-width="375px">Mobile S (375px)</button>
+                </div>
+                <div class="guide-width-controls" style="margin-top: 0.4rem;">
+                    <button class="guide-width-btn" data-height="auto">Auto height</button>
+                    <button class="guide-width-btn" data-height="200px">Short (200px)</button>
+                    <button class="guide-width-btn" data-height="400px">Medium (400px)</button>
+                    <button class="guide-width-btn" data-height="600px">Tall (600px)</button>
+                    <span id="guide-width-display">— × —</span>
                 </div>
             </div>
 
@@ -661,6 +824,32 @@
             showPage(pages.includes(initialPage) ? initialPage : 'dashboard');
         });
         
+        // Embedded guide container resize tracking
+        const resizeWrapper = document.getElementById('guide-resize-wrapper');
+        const widthDisplay = document.getElementById('guide-width-display');
+
+        function updateSizeDisplay() {
+            if (resizeWrapper && widthDisplay) {
+                widthDisplay.textContent = Math.round(resizeWrapper.offsetWidth) + 'px × ' + Math.round(resizeWrapper.offsetHeight) + 'px';
+            }
+        }
+
+        if (resizeWrapper) {
+            const resizeObserver = new ResizeObserver(updateSizeDisplay);
+            resizeObserver.observe(resizeWrapper);
+            updateSizeDisplay();
+        }
+
+        document.querySelectorAll('.guide-width-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (resizeWrapper) {
+                    if (btn.dataset.width) resizeWrapper.style.width = btn.dataset.width;
+                    if (btn.dataset.height) resizeWrapper.style.height = btn.dataset.height === 'auto' ? '' : btn.dataset.height;
+                    setTimeout(updateSizeDisplay, 50);
+                }
+            });
+        });
+
         // Add button click logging
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('btn')) {
