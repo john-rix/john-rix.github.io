@@ -1,718 +1,732 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Acme Analytics</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #f5f7fa;
-            color: #2d3748;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* Dark mode styles */
-        body.dark-mode {
-            background: #1a202c;
-            color: #e2e8f0;
-        }
-
-        .header {
-            background: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        body.dark-mode .header {
-            background: #2d3748;
-            border-bottom: 1px solid #4a5568;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #5850ec;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav a {
-            color: #4a5568;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-
-        body.dark-mode .nav a {
-            color: #cbd5e0;
-        }
-
-        .nav a:hover {
-            background: #f7fafc;
-            color: #5850ec;
-        }
-
-        body.dark-mode .nav a:hover {
-            background: #4a5568;
-            color: #a78bfa;
-        }
-
-        .nav a.active {
-            color: #5850ec;
-            background: #eef2ff;
-        }
-
-        body.dark-mode .nav a.active {
-            color: #a78bfa;
-            background: #4c1d95;
-        }
-
-        .dark-mode-toggle {
-            background: #e2e8f0;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s;
-            color: #2d3748;
-        }
-
-        .dark-mode-toggle:hover {
-            background: #cbd5e0;
-        }
-
-        body.dark-mode .dark-mode-toggle {
-            background: #4a5568;
-            color: #e2e8f0;
-        }
-
-        body.dark-mode .dark-mode-toggle:hover {
-            background: #718096;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-
-        .page-header {
-            margin-bottom: 2rem;
-        }
-
-        .page-header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .page-header p {
-            color: #718096;
-        }
-
-        body.dark-mode .page-header p {
-            color: #a0aec0;
-        }
-
-        .card {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
-            transition: background-color 0.3s;
-        }
-
-        body.dark-mode .card {
-            background: #2d3748;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-
-        .card h2 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: #2d3748;
-        }
-
-        body.dark-mode .card h2 {
-            color: #e2e8f0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: background-color 0.3s;
-        }
-
-        body.dark-mode .stat-card {
-            background: #2d3748;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-
-        .stat-card h3 {
-            font-size: 0.875rem;
-            color: #718096;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-        }
-
-        body.dark-mode .stat-card h3 {
-            color: #a0aec0;
-        }
-
-        .stat-card .value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #2d3748;
-        }
-
-        body.dark-mode .stat-card .value {
-            color: #e2e8f0;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: #5850ec;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s;
-            margin-right: 1rem;
-        }
-
-        .btn:hover {
-            background: #4c46d4;
-            transform: translateY(-1px);
-        }
-
-        body.dark-mode .btn {
-            background: #7c3aed;
-        }
-
-        body.dark-mode .btn:hover {
-            background: #6d28d9;
-        }
-
-        .btn-secondary {
-            background: #e2e8f0;
-            color: #2d3748;
-        }
-
-        .btn-secondary:hover {
-            background: #cbd5e0;
-        }
-
-        body.dark-mode .btn-secondary {
-            background: #4a5568;
-            color: #e2e8f0;
-        }
-
-        body.dark-mode .btn-secondary:hover {
-            background: #718096;
-        }
-
-        .content-hidden {
-            display: none;
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .table th {
-            text-align: left;
-            padding: 0.75rem;
-            border-bottom: 2px solid #e2e8f0;
-            font-weight: 600;
-            color: #4a5568;
-        }
-
-        body.dark-mode .table th {
-            border-bottom-color: #4a5568;
-            color: #cbd5e0;
-        }
-
-        .table td {
-            padding: 0.75rem;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        body.dark-mode .table td {
-            border-bottom-color: #4a5568;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #2d3748;
-        }
-
-        body.dark-mode .form-group label {
-            color: #e2e8f0;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            font-size: 1rem;
-            background: white;
-            color: #2d3748;
-        }
-
-        body.dark-mode .form-group input,
-        body.dark-mode .form-group select,
-        body.dark-mode .form-group textarea {
-            background: #4a5568;
-            border-color: #718096;
-            color: #e2e8f0;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #5850ec;
-            box-shadow: 0 0 0 3px rgba(88, 80, 236, 0.1);
-        }
-
-        .form-group input[type="checkbox"] {
-            width: auto;
-            margin-right: 0.5rem;
-        }
-
-        /* Pendo Embedded Guide Container */
-        .guide-container-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
-            transition: background-color 0.3s;
-        }
-
-        body.dark-mode .guide-container-card {
-            background: #2d3748;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-
-        .guide-container-card h2 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: #2d3748;
-        }
-
-        body.dark-mode .guide-container-card h2 {
-            color: #e2e8f0;
-        }
-
-        .guide-container-card .guide-meta {
-            font-size: 0.8rem;
-            color: #718096;
-            margin-bottom: 1rem;
-        }
-
-        body.dark-mode .guide-container-card .guide-meta {
-            color: #a0aec0;
-        }
-
-        .guide-resize-wrapper {
-            overflow: hidden;
-            min-width: 280px;
-            max-width: 100%;
-            width: 100%;
-            min-height: 200px;
-            border: 2px dashed #cbd5e0;
-            border-radius: 8px;
-            padding: 4px;
-            position: relative;
-            box-sizing: border-box;
-        }
-
-        body.dark-mode .guide-resize-wrapper {
-            border-color: #4a5568;
-        }
-
-        .guide-resize-label {
-            position: absolute;
-            top: 6px;
-            right: 28px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #a0aec0;
-            background: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            pointer-events: none;
-            letter-spacing: 0.5px;
-        }
-
-        body.dark-mode .guide-resize-label {
-            background: #2d3748;
-            color: #718096;
-        }
-
-        #pendo-guide-container {
-            width: 100%;
-            height: 100%;
-            min-height: 192px;
-            border-radius: 6px;
-            background: #f7fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #a0aec0;
-            font-size: 0.875rem;
-            box-sizing: border-box;
-        }
-
-        body.dark-mode #pendo-guide-container {
-            background: #1a202c;
-            color: #718096;
-        }
-
-        .guide-width-controls {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
-        .guide-width-btn {
-            padding: 0.35rem 0.75rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid #e2e8f0;
-            border-radius: 5px;
-            background: white;
-            color: #4a5568;
-            cursor: pointer;
-            transition: all 0.15s;
-        }
-
-        .guide-width-btn:hover {
-            border-color: #5850ec;
-            color: #5850ec;
-        }
-
-        body.dark-mode .guide-width-btn {
-            background: #4a5568;
-            border-color: #718096;
-            color: #e2e8f0;
-        }
-
-        body.dark-mode .guide-width-btn:hover {
-            border-color: #a78bfa;
-            color: #a78bfa;
-        }
-
-        #guide-width-display {
-            font-size: 0.8rem;
-            color: #718096;
-            align-self: center;
-            margin-left: auto;
-        }
-
-        body.dark-mode #guide-width-display {
-            color: #a0aec0;
-        }
-    </style>
-</head>
-<body data-theme="light">
-    <div class="header">
-        <div class="logo">Acme Analytics</div>
-        <div class="header-right">
-            <nav class="nav">
-                <a href="#dashboard" class="nav-link" data-page="dashboard">Dashboard</a>
-                <a href="#analytics" class="nav-link" data-page="analytics">Analytics</a>
-                <a href="#reports" class="nav-link" data-page="reports">Reports</a>
-                <a href="#settings" class="nav-link" data-page="settings">Settings</a>
-            </nav>
-            <button class="dark-mode-toggle" id="dark-mode-toggle">🌙 Dark Mode</button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard - Acme Analytics</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                background: #f5f7fa;
+                color: #2d3748;
+                transition:
+                    background-color 0.3s,
+                    color 0.3s;
+            }
+
+            /* Dark mode styles */
+            body.dark-mode {
+                background: #1a202c;
+                color: #e2e8f0;
+            }
+
+            .header {
+                background: #ffffff;
+                border-bottom: 1px solid #e2e8f0;
+                padding: 0 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 64px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+                transition:
+                    background-color 0.3s,
+                    border-color 0.3s;
+            }
+
+            body.dark-mode .header {
+                background: #2d3748;
+                border-bottom: 1px solid #4a5568;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #5850ec;
+            }
+
+            .header-right {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            .nav {
+                display: flex;
+                gap: 2rem;
+            }
+
+            .nav a {
+                color: #4a5568;
+                text-decoration: none;
+                font-weight: 500;
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+                transition: all 0.2s;
+            }
+
+            body.dark-mode .nav a {
+                color: #cbd5e0;
+            }
+
+            .nav a:hover {
+                background: #f7fafc;
+                color: #5850ec;
+            }
+
+            body.dark-mode .nav a:hover {
+                background: #4a5568;
+                color: #a78bfa;
+            }
+
+            .nav a.active {
+                color: #5850ec;
+                background: #eef2ff;
+            }
+
+            body.dark-mode .nav a.active {
+                color: #a78bfa;
+                background: #4c1d95;
+            }
+
+            .dark-mode-toggle {
+                background: #e2e8f0;
+                border: none;
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+                cursor: pointer;
+                font-weight: 600;
+                transition: all 0.2s;
+                color: #2d3748;
+            }
+
+            .dark-mode-toggle:hover {
+                background: #cbd5e0;
+            }
+
+            body.dark-mode .dark-mode-toggle {
+                background: #4a5568;
+                color: #e2e8f0;
+            }
+
+            body.dark-mode .dark-mode-toggle:hover {
+                background: #718096;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 2rem auto;
+                padding: 0 2rem;
+            }
+
+            .page-header {
+                margin-bottom: 2rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .page-header p {
+                color: #718096;
+            }
+
+            body.dark-mode .page-header p {
+                color: #a0aec0;
+            }
+
+            .card {
+                background: white;
+                border-radius: 8px;
+                padding: 1.5rem;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 1.5rem;
+                transition: background-color 0.3s;
+            }
+
+            body.dark-mode .card {
+                background: #2d3748;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            }
+
+            .card h2 {
+                font-size: 1.25rem;
+                margin-bottom: 1rem;
+                color: #2d3748;
+            }
+
+            body.dark-mode .card h2 {
+                color: #e2e8f0;
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .stat-card {
+                background: white;
+                border-radius: 8px;
+                padding: 1.5rem;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                transition: background-color 0.3s;
+            }
+
+            body.dark-mode .stat-card {
+                background: #2d3748;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            }
+
+            .stat-card h3 {
+                font-size: 0.875rem;
+                color: #718096;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-bottom: 0.5rem;
+            }
+
+            body.dark-mode .stat-card h3 {
+                color: #a0aec0;
+            }
+
+            .stat-card .value {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #2d3748;
+            }
+
+            body.dark-mode .stat-card .value {
+                color: #e2e8f0;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 0.75rem 1.5rem;
+                background: #5850ec;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+                text-decoration: none;
+                transition: all 0.2s;
+                margin-right: 1rem;
+            }
+
+            .btn:hover {
+                background: #4c46d4;
+                transform: translateY(-1px);
+            }
+
+            body.dark-mode .btn {
+                background: #7c3aed;
+            }
+
+            body.dark-mode .btn:hover {
+                background: #6d28d9;
+            }
+
+            .btn-secondary {
+                background: #e2e8f0;
+                color: #2d3748;
+            }
+
+            .btn-secondary:hover {
+                background: #cbd5e0;
+            }
+
+            body.dark-mode .btn-secondary {
+                background: #4a5568;
+                color: #e2e8f0;
+            }
+
+            body.dark-mode .btn-secondary:hover {
+                background: #718096;
+            }
+
+            .content-hidden {
+                display: none;
+            }
+
+            .table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .table th {
+                text-align: left;
+                padding: 0.75rem;
+                border-bottom: 2px solid #e2e8f0;
+                font-weight: 600;
+                color: #4a5568;
+            }
+
+            body.dark-mode .table th {
+                border-bottom-color: #4a5568;
+                color: #cbd5e0;
+            }
+
+            .table td {
+                padding: 0.75rem;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            body.dark-mode .table td {
+                border-bottom-color: #4a5568;
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                color: #2d3748;
+            }
+
+            body.dark-mode .form-group label {
+                color: #e2e8f0;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid #e2e8f0;
+                border-radius: 6px;
+                font-size: 1rem;
+                background: white;
+                color: #2d3748;
+            }
+
+            body.dark-mode .form-group input,
+            body.dark-mode .form-group select,
+            body.dark-mode .form-group textarea {
+                background: #4a5568;
+                border-color: #718096;
+                color: #e2e8f0;
+            }
+
+            .form-group input:focus,
+            .form-group select:focus,
+            .form-group textarea:focus {
+                outline: none;
+                border-color: #5850ec;
+                box-shadow: 0 0 0 3px rgba(88, 80, 236, 0.1);
+            }
+
+            .form-group input[type='checkbox'] {
+                width: auto;
+                margin-right: 0.5rem;
+            }
+
+            /* Pendo Embedded Guide Container */
+            .guide-container-card {
+                background: white;
+                border-radius: 8px;
+                padding: 1.5rem;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 1.5rem;
+                transition: background-color 0.3s;
+            }
+
+            body.dark-mode .guide-container-card {
+                background: #2d3748;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            }
+
+            .guide-container-card h2 {
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+                color: #2d3748;
+            }
+
+            body.dark-mode .guide-container-card h2 {
+                color: #e2e8f0;
+            }
+
+            .guide-container-card .guide-meta {
+                font-size: 0.8rem;
+                color: #718096;
+                margin-bottom: 1rem;
+            }
+
+            body.dark-mode .guide-container-card .guide-meta {
+                color: #a0aec0;
+            }
+
+            .guide-resize-wrapper {
+                overflow: hidden;
+                min-width: 280px;
+                max-width: 100%;
+                width: 100%;
+                min-height: 200px;
+                border: 2px dashed #cbd5e0;
+                border-radius: 8px;
+                padding: 4px;
+                position: relative;
+                box-sizing: border-box;
+            }
+
+            body.dark-mode .guide-resize-wrapper {
+                border-color: #4a5568;
+            }
+
+            .guide-resize-label {
+                position: absolute;
+                top: 6px;
+                right: 28px;
+                font-size: 0.7rem;
+                font-weight: 600;
+                color: #a0aec0;
+                background: white;
+                padding: 2px 6px;
+                border-radius: 4px;
+                pointer-events: none;
+                letter-spacing: 0.5px;
+            }
+
+            body.dark-mode .guide-resize-label {
+                background: #2d3748;
+                color: #718096;
+            }
+
+            #pendo-guide-container {
+                width: 100%;
+                height: 100%;
+                min-height: 192px;
+                border-radius: 6px;
+                background: #f7fafc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #a0aec0;
+                font-size: 0.875rem;
+                box-sizing: border-box;
+            }
+
+            body.dark-mode #pendo-guide-container {
+                background: #1a202c;
+                color: #718096;
+            }
+
+            .guide-width-controls {
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                margin-top: 1rem;
+            }
+
+            .guide-width-btn {
+                padding: 0.35rem 0.75rem;
+                font-size: 0.8rem;
+                font-weight: 600;
+                border: 1px solid #e2e8f0;
+                border-radius: 5px;
+                background: white;
+                color: #4a5568;
+                cursor: pointer;
+                transition: all 0.15s;
+            }
+
+            .guide-width-btn:hover {
+                border-color: #5850ec;
+                color: #5850ec;
+            }
+
+            body.dark-mode .guide-width-btn {
+                background: #4a5568;
+                border-color: #718096;
+                color: #e2e8f0;
+            }
+
+            body.dark-mode .guide-width-btn:hover {
+                border-color: #a78bfa;
+                color: #a78bfa;
+            }
+
+            #guide-width-display {
+                font-size: 0.8rem;
+                color: #718096;
+                align-self: center;
+                margin-left: auto;
+            }
+
+            body.dark-mode #guide-width-display {
+                color: #a0aec0;
+            }
+        </style>
+    </head>
+    <body data-theme="light">
+        <div class="header">
+            <div class="logo">Acme Analytics</div>
+            <div class="header-right">
+                <nav class="nav">
+                    <a href="#dashboard" class="nav-link" data-page="dashboard">Dashboard</a>
+                    <a href="#analytics" class="nav-link" data-page="analytics">Analytics</a>
+                    <a href="#reports" class="nav-link" data-page="reports">Reports</a>
+                    <a href="#settings" class="nav-link" data-page="settings">Settings</a>
+                </nav>
+                <button class="dark-mode-toggle" id="dark-mode-toggle">🌙 Dark Mode</button>
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <!-- Dashboard Page -->
-        <div id="page-dashboard" class="page-content">
-            <div class="page-header">
-                <h1>Dashboard</h1>
-                <p>Welcome back! Here's what's happening with your account.</p>
-            </div>
+        <div class="container">
+            <!-- Dashboard Page -->
+            <div id="page-dashboard" class="page-content">
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back! Here's what's happening with your account.</p>
+                </div>
 
-            <div class="stats-grid">
-                <div class="stat-card" id="stat-users">
-                    <h3>Total Users</h3>
-                    <div class="value">2,543</div>
-                </div>
-                <div class="stat-card" id="stat-revenue">
-                    <h3>Revenue</h3>
-                    <div class="value">$45,231</div>
-                </div>
-                <div class="stat-card" id="stat-sessions">
-                    <h3>Active Sessions</h3>
-                    <div class="value">182</div>
-                </div>
-                <div class="stat-card" id="stat-conversion">
-                    <h3>Conversion Rate</h3>
-                    <div class="value">3.24%</div>
-                </div>
-            </div>
-
-            <div class="guide-container-card" id="embedded-guide-card">
-                <h2>Embedded Guide</h2>
-
-                <div class="guide-resize-wrapper" id="guide-resize-wrapper">
-                    <div id="pendo-guide-container">
-                        Pendo embedded guide will appear here
+                <div class="stats-grid">
+                    <div class="stat-card" id="stat-users">
+                        <h3>Total Users</h3>
+                        <div class="value">2,543</div>
+                    </div>
+                    <div class="stat-card" id="stat-revenue">
+                        <h3>Revenue</h3>
+                        <div class="value">$45,231</div>
+                    </div>
+                    <div class="stat-card" id="stat-sessions">
+                        <h3>Active Sessions</h3>
+                        <div class="value">182</div>
+                    </div>
+                    <div class="stat-card" id="stat-conversion">
+                        <h3>Conversion Rate</h3>
+                        <div class="value">3.24%</div>
                     </div>
                 </div>
 
-                <div class="guide-width-controls" style="margin-top: 0.75rem;">
-                    <span id="guide-width-display">— × —</span>
+                <div class="guide-container-card" id="embedded-guide-card">
+                    <h2>Embedded Guide</h2>
+
+                    <div class="guide-resize-wrapper" id="guide-resize-wrapper">
+                        <div id="pendo-guide-container">Pendo embedded guide will appear here</div>
+                    </div>
+
+                    <div class="guide-width-controls" style="margin-top: 0.75rem">
+                        <span id="guide-width-display">— × —</span>
+                    </div>
+                </div>
+
+                <div class="card" id="quick-actions">
+                    <h2>Quick Actions</h2>
+                    <button class="btn" id="btn-create-report">Create New Report</button>
+                    <button class="btn btn-secondary" id="btn-export-data">Export Data</button>
+                </div>
+
+                <div class="card" id="recent-activity">
+                    <h2>Recent Activity</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Action</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>john@example.com</td>
+                                <td>Created report</td>
+                                <td>2 minutes ago</td>
+                            </tr>
+                            <tr>
+                                <td>sarah@example.com</td>
+                                <td>Updated settings</td>
+                                <td>15 minutes ago</td>
+                            </tr>
+                            <tr>
+                                <td>mike@example.com</td>
+                                <td>Exported data</td>
+                                <td>1 hour ago</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <div class="card" id="quick-actions">
-                <h2>Quick Actions</h2>
-                <button class="btn" id="btn-create-report">Create New Report</button>
-                <button class="btn btn-secondary" id="btn-export-data">Export Data</button>
+            <!-- Analytics Page -->
+            <div id="page-analytics" class="page-content content-hidden">
+                <div class="page-header">
+                    <h1>Analytics</h1>
+                    <p>Deep dive into your performance metrics.</p>
+                </div>
+
+                <div class="card" id="analytics-chart">
+                    <h2>Performance Overview</h2>
+                    <p>Chart visualization would go here</p>
+                    <button class="btn" id="btn-refresh-analytics">Refresh Data</button>
+                </div>
+
+                <div class="card" id="analytics-filters">
+                    <h2>Filters</h2>
+                    <div class="form-group">
+                        <label>Date Range</label>
+                        <select id="date-range">
+                            <option>Last 7 days</option>
+                            <option>Last 30 days</option>
+                            <option>Last 90 days</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Metric Type</label>
+                        <select id="metric-type">
+                            <option>Users</option>
+                            <option>Sessions</option>
+                            <option>Conversion</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
-            <div class="card" id="recent-activity">
-                <h2>Recent Activity</h2>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Action</th>
-                            <th>Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>john@example.com</td>
-                            <td>Created report</td>
-                            <td>2 minutes ago</td>
-                        </tr>
-                        <tr>
-                            <td>sarah@example.com</td>
-                            <td>Updated settings</td>
-                            <td>15 minutes ago</td>
-                        </tr>
-                        <tr>
-                            <td>mike@example.com</td>
-                            <td>Exported data</td>
-                            <td>1 hour ago</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Reports Page -->
+            <div id="page-reports" class="page-content content-hidden">
+                <div class="page-header">
+                    <h1>Reports</h1>
+                    <p>Generate and manage your custom reports.</p>
+                </div>
+
+                <div class="card" id="report-builder">
+                    <h2>Create New Report</h2>
+                    <div class="form-group">
+                        <label>Report Name</label>
+                        <input type="text" id="report-name" placeholder="Enter report name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Report Type</label>
+                        <select id="report-type">
+                            <option>User Analytics</option>
+                            <option>Revenue Summary</option>
+                            <option>Activity Log</option>
+                        </select>
+                    </div>
+                    <button class="btn" id="btn-generate-report">Generate Report</button>
+                </div>
+
+                <div class="card" id="saved-reports">
+                    <h2>Saved Reports</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Report Name</th>
+                                <th>Type</th>
+                                <th>Created</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Q4 User Growth</td>
+                                <td>User Analytics</td>
+                                <td>Oct 15, 2025</td>
+                                <td><button class="btn btn-secondary">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>Monthly Revenue</td>
+                                <td>Revenue Summary</td>
+                                <td>Oct 1, 2025</td>
+                                <td><button class="btn btn-secondary">View</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="page-settings" class="page-content content-hidden">
+                <div class="page-header">
+                    <h1>Settings</h1>
+                    <p>Manage your account preferences and configuration.</p>
+                </div>
+
+                <div class="card" id="account-settings">
+                    <h2>Account Settings</h2>
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input type="text" id="company-name" value="Acme Corp" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" value="admin@acme.com" />
+                    </div>
+                    <div class="form-group">
+                        <label>Timezone</label>
+                        <select id="timezone">
+                            <option>UTC-5 (Eastern)</option>
+                            <option>UTC-6 (Central)</option>
+                            <option>UTC-7 (Mountain)</option>
+                            <option>UTC-8 (Pacific)</option>
+                        </select>
+                    </div>
+                    <button class="btn" id="btn-save-settings">Save Changes</button>
+                </div>
+
+                <div class="card" id="notification-settings">
+                    <h2>Notification Preferences</h2>
+                    <div class="form-group">
+                        <label> <input type="checkbox" id="email-notifications" checked /> Email Notifications </label>
+                    </div>
+                    <div class="form-group">
+                        <label> <input type="checkbox" id="weekly-reports" checked /> Weekly Reports </label>
+                    </div>
+                    <div class="form-group">
+                        <label> <input type="checkbox" id="alert-notifications" /> Alert Notifications </label>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Analytics Page -->
-        <div id="page-analytics" class="page-content content-hidden">
-            <div class="page-header">
-                <h1>Analytics</h1>
-                <p>Deep dive into your performance metrics.</p>
-            </div>
+        <script>
+            // Get or generate visitor ID that persists across page refreshes
+            let visitor_id = sessionStorage.getItem('pendo_visitor_id');
+            if (!visitor_id) {
+                const random_number = Math.floor(Math.random() * 1000000);
+                visitor_id = 'visitor_' + random_number;
+                sessionStorage.setItem('pendo_visitor_id', visitor_id);
+            }
 
-            <div class="card" id="analytics-chart">
-                <h2>Performance Overview</h2>
-                <p>Chart visualization would go here</p>
-                <button class="btn" id="btn-refresh-analytics">Refresh Data</button>
-            </div>
+            // Pendo Installation Code
+            (function (apiKey) {
+                (function (p, e, n, d, o) {
+                    var v, w, x, y, z;
+                    o = p[d] = p[d] || {};
+                    o._q = [];
+                    v = ['initialize', 'identify', 'updateOptions', 'pageLoad'];
+                    for (w = 0, x = v.length; w < x; ++w)
+                        (function (m) {
+                            o[m] =
+                                o[m] ||
+                                function () {
+                                    o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                                };
+                        })(v[w]);
+                    y = e.createElement(n);
+                    y.async = !0;
+                    y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                    z = e.getElementsByTagName(n)[0];
+                    z.parentNode.insertBefore(y, z);
+                })(window, document, 'script', 'pendo');
 
-            <div class="card" id="analytics-filters">
-                <h2>Filters</h2>
-                <div class="form-group">
-                    <label>Date Range</label>
-                    <select id="date-range">
-                        <option>Last 7 days</option>
-                        <option>Last 30 days</option>
-                        <option>Last 90 days</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Metric Type</label>
-                    <select id="metric-type">
-                        <option>Users</option>
-                        <option>Sessions</option>
-                        <option>Conversion</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <!-- Reports Page -->
-        <div id="page-reports" class="page-content content-hidden">
-            <div class="page-header">
-                <h1>Reports</h1>
-                <p>Generate and manage your custom reports.</p>
-            </div>
-
-            <div class="card" id="report-builder">
-                <h2>Create New Report</h2>
-                <div class="form-group">
-                    <label>Report Name</label>
-                    <input type="text" id="report-name" placeholder="Enter report name">
-                </div>
-                <div class="form-group">
-                    <label>Report Type</label>
-                    <select id="report-type">
-                        <option>User Analytics</option>
-                        <option>Revenue Summary</option>
-                        <option>Activity Log</option>
-                    </select>
-                </div>
-                <button class="btn" id="btn-generate-report">Generate Report</button>
-            </div>
-
-            <div class="card" id="saved-reports">
-                <h2>Saved Reports</h2>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Report Name</th>
-                            <th>Type</th>
-                            <th>Created</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Q4 User Growth</td>
-                            <td>User Analytics</td>
-                            <td>Oct 15, 2025</td>
-                            <td><button class="btn btn-secondary">View</button></td>
-                        </tr>
-                        <tr>
-                            <td>Monthly Revenue</td>
-                            <td>Revenue Summary</td>
-                            <td>Oct 1, 2025</td>
-                            <td><button class="btn btn-secondary">View</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Settings Page -->
-        <div id="page-settings" class="page-content content-hidden">
-            <div class="page-header">
-                <h1>Settings</h1>
-                <p>Manage your account preferences and configuration.</p>
-            </div>
-
-            <div class="card" id="account-settings">
-                <h2>Account Settings</h2>
-                <div class="form-group">
-                    <label>Company Name</label>
-                    <input type="text" id="company-name" value="Acme Corp">
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="email" value="admin@acme.com">
-                </div>
-                <div class="form-group">
-                    <label>Timezone</label>
-                    <select id="timezone">
-                        <option>UTC-5 (Eastern)</option>
-                        <option>UTC-6 (Central)</option>
-                        <option>UTC-7 (Mountain)</option>
-                        <option>UTC-8 (Pacific)</option>
-                    </select>
-                </div>
-                <button class="btn" id="btn-save-settings">Save Changes</button>
-            </div>
-
-            <div class="card" id="notification-settings">
-                <h2>Notification Preferences</h2>
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="email-notifications" checked> Email Notifications
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="weekly-reports" checked> Weekly Reports
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="alert-notifications"> Alert Notifications
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Get or generate visitor ID that persists across page refreshes
-        let visitor_id = sessionStorage.getItem('pendo_visitor_id');
-        if (!visitor_id) {
-            const random_number = Math.floor(Math.random() * 1000000);
-            visitor_id = 'visitor_' + random_number;
-            sessionStorage.setItem('pendo_visitor_id', visitor_id);
-        }
-
-        // Pendo Installation Code
-        (function(apiKey){
-            (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
-            v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
-                o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
-                y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js';
-                z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
-                
                 pendo.initialize({
+                    guides: {
+                        disabled: true
+                    },
                     visitor: {
                         id: visitor_id,
                         email: visitor_id + '@pendo.io',
@@ -727,112 +741,113 @@
                         creationDate: '2019-01-02'
                     }
                 });
-        })('72b9834d-442b-4db6-5ceb-ee727850772b');
+            })('72b9834d-442b-4db6-5ceb-ee727850772b');
 
-        // Dark mode functionality
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const body = document.body;
+            // Dark mode functionality
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const body = document.body;
 
-        // Load dark mode preference
-        const isDarkMode = localStorage.getItem('darkMode') === 'true';
-        if (isDarkMode) {
-            body.classList.add('dark-mode');
-            body.setAttribute('data-theme', 'dark');
-            darkModeToggle.textContent = '☀️ Light Mode';
-        }
+            // Load dark mode preference
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                body.classList.add('dark-mode');
+                body.setAttribute('data-theme', 'dark');
+                darkModeToggle.textContent = '☀️ Light Mode';
+            }
 
-        // Toggle dark mode
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDark = body.classList.contains('dark-mode');
-            body.setAttribute('data-theme', isDark ? 'dark' : 'light');
-            localStorage.setItem('darkMode', isDark);
-            darkModeToggle.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
-        });
+            // Toggle dark mode
+            darkModeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                const isDark = body.classList.contains('dark-mode');
+                body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+                localStorage.setItem('darkMode', isDark);
+                darkModeToggle.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+            });
 
-        // Simple routing system
-        const pages = ['dashboard', 'analytics', 'reports', 'settings'];
-        
-        function showPage(pageName) {
-            // Hide all pages
-            pages.forEach(p => {
-                const pageEl = document.getElementById(`page-${p}`);
-                if (pageEl) {
-                    pageEl.classList.add('content-hidden');
+            // Simple routing system
+            const pages = ['dashboard', 'analytics', 'reports', 'settings'];
+
+            function showPage(pageName) {
+                // Hide all pages
+                pages.forEach((p) => {
+                    const pageEl = document.getElementById(`page-${p}`);
+                    if (pageEl) {
+                        pageEl.classList.add('content-hidden');
+                    }
+                });
+
+                // Show selected page
+                const selectedPage = document.getElementById(`page-${pageName}`);
+                if (selectedPage) {
+                    selectedPage.classList.remove('content-hidden');
+                }
+
+                // Update nav active state
+                document.querySelectorAll('.nav-link').forEach((link) => {
+                    link.classList.remove('active');
+                    if (link.dataset.page === pageName) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Update URL hash
+                window.location.hash = pageName;
+
+                // Update page title
+                document.title = pageName.charAt(0).toUpperCase() + pageName.slice(1) + ' - Acme Analytics';
+
+                // Trigger Pendo pageLoad
+                if (window.pendo) {
+                    pendo.pageLoad();
+                }
+            }
+
+            // Handle navigation clicks
+            document.querySelectorAll('.nav-link').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = e.target.dataset.page;
+                    showPage(page);
+                });
+            });
+
+            // Handle browser back/forward
+            window.addEventListener('hashchange', () => {
+                const hash = window.location.hash.slice(1);
+                if (pages.includes(hash)) {
+                    showPage(hash);
                 }
             });
-            
-            // Show selected page
-            const selectedPage = document.getElementById(`page-${pageName}`);
-            if (selectedPage) {
-                selectedPage.classList.remove('content-hidden');
+
+            // Initialize on load
+            window.addEventListener('load', () => {
+                const initialPage = window.location.hash.slice(1) || 'dashboard';
+                showPage(pages.includes(initialPage) ? initialPage : 'dashboard');
+            });
+
+            // Embedded guide container size tracking
+            const resizeWrapper = document.getElementById('guide-resize-wrapper');
+            const widthDisplay = document.getElementById('guide-width-display');
+
+            function updateSizeDisplay() {
+                if (resizeWrapper && widthDisplay) {
+                    widthDisplay.textContent =
+                        Math.round(resizeWrapper.offsetWidth) + 'px × ' + Math.round(resizeWrapper.offsetHeight) + 'px';
+                }
             }
-            
-            // Update nav active state
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.dataset.page === pageName) {
-                    link.classList.add('active');
+
+            if (resizeWrapper) {
+                const resizeObserver = new ResizeObserver(updateSizeDisplay);
+                resizeObserver.observe(resizeWrapper);
+                updateSizeDisplay();
+            }
+
+            // Add button click logging
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('btn')) {
+                    console.log('Button clicked:', e.target.id || e.target.textContent);
                 }
             });
-            
-            // Update URL hash
-            window.location.hash = pageName;
-            
-            // Update page title
-            document.title = pageName.charAt(0).toUpperCase() + pageName.slice(1) + ' - Acme Analytics';
-            
-            // Trigger Pendo pageLoad
-            if (window.pendo) {
-                pendo.pageLoad();
-            }
-        }
-        
-        // Handle navigation clicks
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const page = e.target.dataset.page;
-                showPage(page);
-            });
-        });
-        
-        // Handle browser back/forward
-        window.addEventListener('hashchange', () => {
-            const hash = window.location.hash.slice(1);
-            if (pages.includes(hash)) {
-                showPage(hash);
-            }
-        });
-        
-        // Initialize on load
-        window.addEventListener('load', () => {
-            const initialPage = window.location.hash.slice(1) || 'dashboard';
-            showPage(pages.includes(initialPage) ? initialPage : 'dashboard');
-        });
-        
-        // Embedded guide container size tracking
-        const resizeWrapper = document.getElementById('guide-resize-wrapper');
-        const widthDisplay = document.getElementById('guide-width-display');
-
-        function updateSizeDisplay() {
-            if (resizeWrapper && widthDisplay) {
-                widthDisplay.textContent = Math.round(resizeWrapper.offsetWidth) + 'px × ' + Math.round(resizeWrapper.offsetHeight) + 'px';
-            }
-        }
-
-        if (resizeWrapper) {
-            const resizeObserver = new ResizeObserver(updateSizeDisplay);
-            resizeObserver.observe(resizeWrapper);
-            updateSizeDisplay();
-        }
-
-        // Add button click logging
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('btn')) {
-                console.log('Button clicked:', e.target.id || e.target.textContent);
-            }
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
